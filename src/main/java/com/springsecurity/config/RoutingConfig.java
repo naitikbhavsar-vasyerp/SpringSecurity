@@ -13,9 +13,9 @@ public class RoutingConfig implements AuthenticationSuccessHandler {
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
-        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority(Role.ROLE_ADMIN)))
+        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority(Role.ROLE_+Role.ADMIN)))
             response.sendRedirect("/api/v1/admin/dashboard");
-        else if (authentication.getAuthorities().contains(new SimpleGrantedAuthority(Role.ROLE_USER)))
+        else if (authentication.getAuthorities().contains(new SimpleGrantedAuthority(Role.ROLE_+Role.USER)))
             response.sendRedirect("/api/v1/user/dashboard");
         else
             response.sendError(404, "Invalid user role");
