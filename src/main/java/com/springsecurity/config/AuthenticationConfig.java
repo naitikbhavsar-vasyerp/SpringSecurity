@@ -26,11 +26,10 @@ public class AuthenticationConfig {
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        Role role = new Role();
         httpSecurity.authorizeHttpRequests(authorizationManagerRequestMatcherRegistry ->
                         authorizationManagerRequestMatcherRegistry
-                                .requestMatchers("/api/v1/admin/dashboard").hasRole(role.ADMIN)
-                                .requestMatchers("/api/v1/user/dashboard").hasAnyRole(role.ADMIN, role.USER)
+                                .requestMatchers("/api/v1/admin/dashboard").hasRole(Role.ADMIN)
+                                .requestMatchers("/api/v1/user/dashboard").hasAnyRole(Role.ADMIN, Role.USER)
                                 .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .formLogin(httpSecurityFormLoginConfigurer ->
