@@ -10,13 +10,11 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import java.io.IOException;
 
 public class RoutingConfig implements AuthenticationSuccessHandler {
-
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
-        Role role = new Role();
-        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_" + role.ADMIN)))
+        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority(Role.ROLE_+Role.ADMIN)))
             response.sendRedirect("/api/v1/admin/dashboard");
-        else if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_" + role.USER)))
+        else if (authentication.getAuthorities().contains(new SimpleGrantedAuthority(Role.ROLE_+Role.USER)))
             response.sendRedirect("/api/v1/user/dashboard");
         else
             response.sendError(404, "Invalid user role");

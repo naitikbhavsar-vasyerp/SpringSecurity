@@ -1,20 +1,41 @@
 package com.springsecurity.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.springsecurity.model.UserData;
+import com.springsecurity.service.UserJpaService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
-@RestController
+@Controller
 @RequestMapping("/api/v1")
 public class LoginController {
 
+    @Autowired
+    private UserJpaService userJpaService;
+
+    @GetMapping("/home")
+    public ModelAndView home(){
+        return new ModelAndView("home");
+    }
+
+    @GetMapping("/signup-page")
+    public ModelAndView index(){
+        return new ModelAndView("index");
+    }
+
+    @PostMapping("/signup")
+    public String addUser(UserData user){
+        userJpaService.addUser(user);
+        return "redirect:/login";
+    }
     @GetMapping("/admin/dashboard")
-    public String adminDashboard(){
-        return "Welcome to admin dashboard";
+    public ModelAndView adminDashboard(){
+        return new ModelAndView("admin");
     }
 
     @GetMapping("/user/dashboard")
-    public String userDashboard(){
-        return "Welcome to user dashboard";
+    public ModelAndView userDashboard(){
+        return new ModelAndView("user");
     }
 }
