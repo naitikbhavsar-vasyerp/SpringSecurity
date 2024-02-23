@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <html>
 <head>
   <style>
@@ -123,35 +125,9 @@
 <body>
 
   <div class="container">
-    <p class="header">Add Student</p>
-
-    <form action="/api/v1/signup" method="post">
-
-      <label for="userName">
-        UserName
-      </label>
-      <input class="inputbar" type="text" id="userName" name="userName" required><br>
-      <label for="password">
-        Password
-      </label>
-      <input class="inputbar" type="password" id="password" name="password" required><br>
-      <div class="radiobtn">
-      <label for="user">User</label>
-      <input class="inputbar" type="radio" id="user" name="role" value="User">
-      <label for="admin">Admin</label>
-      <input class="inputbar" type="radio" id="admin" name="role" value="Admin">
-      </div>
-      <div>
-        <button type="submit" class="btn">Add</button>
-    </form>
+    <p class="header">${message}</p>
   </div>
-  <div class="addbtncntr">
-    <a href="/login" style="text-decoration: none">
-      <div class="addbtn">
-        <p>Login</p>
-      </div>
-    </a>
-  </div>
+
   </div>
 </body>
 

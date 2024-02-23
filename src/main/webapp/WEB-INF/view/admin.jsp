@@ -33,34 +33,45 @@
       border-radius: 20px;
       box-shadow: 4px 7px 5px 0px #1d3557;
     }
+ form {
+      padding: 30px;
 
-    .addbtn {
-      background-color: #00171f;
-      align-items: center;
-      display: flex;
-      justify-content: center;
-      font-family: Verdana, Geneva, Tahoma, sans-serif;
-      font-size: 15px;
-      border: 2px solid #a8dadc;
-      border-radius: 5px;
-      padding: 15px 150px;
+    }
+
+    form input {
       width: 500px;
+      padding: 10px;
+      margin-bottom: 15px;
+
     }
 
-.addbtncntr{
-  margin-bottom: 10px;
-}
-    .addbtncntr :hover {
-      box-shadow: 0 0 10px #1d3557;
-      color: #a8dadc;
+    form button {
+      background-color: #3498db;
+      color: #fff;
+      margin-bottom: 20px;
+      padding: 10px 15px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      width: 100%;
     }
 
-    .addbtn p {
-      color: white;
-      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-      font-size: 18px;
+    form button:hover {
+      background-color: #267bb7;
     }
 
+    form .error-message {
+      color: #e74c3c;
+      margin-top: -10px;
+      margin-bottom: 15px;
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 5px;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+    }
   </style>
 </head>
 
@@ -69,11 +80,14 @@
   <div class="container">
   <div class="addbtncntr">
    <p>Welcome to Admin dashboard</p>
-     <a href="/api/v1/user/dashboard" style="text-decoration: none">
-       <div class="addbtn">
-         <p>User Dashboard</p>
-       </div>
-    </a>
+    <form action="/api/v1/user/dashboard" method="post">
+          <input type="hidden" id="token" name="token" value="${token}"><br>
+          <input type="hidden" id="userName" name="userName" value="${user.userName}"><br>
+          <input type="hidden" id="password" name="password" value="${user.password}"><br>
+          <input type="hidden" id="role" name="role" value="${role}"><br>
+          <div>
+            <button type="submit" class="btn">User Dashboard</button>
+        </form>
              <a href="/logout" style="text-decoration: none">
                <div class="addbtn">
                  <p>Logout</p>
